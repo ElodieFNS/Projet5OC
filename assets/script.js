@@ -16,3 +16,21 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+
+// let flechegauche = document.querySelector(".arrow_left")
+// console.log(flechegauche)
+
+// let flechedroite = document.querySelector(".arrow_right")
+// console.log(flechedroite)
+
+let flechegauche = document.querySelector(".arrow_left")
+console.log(flechegauche)
+
+let flechedroite = document.querySelector(".arrow_right")
+console.log(flechedroite)
+
+flechedroite.onclick = function (){
+	for(var i = 0; i <= 4;){
+		
+	}
+}
