@@ -17,20 +17,57 @@ const slides = [
 	}
 ]
 
-// let flechegauche = document.querySelector(".arrow_left")
-// console.log(flechegauche)
 
-// let flechedroite = document.querySelector(".arrow_right")
-// console.log(flechedroite)
 
-let flechegauche = document.querySelector(".arrow_left")
-console.log(flechegauche)
-
+let flechegauche = document.querySelector(".arrow_left") //creation de la variable flechegauche qui pointe vers la classe .arrow_left
 let flechedroite = document.querySelector(".arrow_right")
-console.log(flechedroite)
+let point = document.querySelector(".dots")
+let imageCarrousel = document.querySelector(".banner-img")
+let texteCarrousel = document.querySelector("#banner p")
 
-flechedroite.onclick = function (){
-	for(var i = 0; i <= 4;){
-		
+
+for (let i = 0; i<4; i++) {
+	let ajoutDivPoint = document.createElement("div")
+	ajoutDivPoint.classList.add("dot")
+	if (i===0){
+		ajoutDivPoint.classList.add("dot_selected");
 	}
+	point.appendChild(ajoutDivPoint)
+}
+
+flechedroite.addEventListener("click", function() {
+    let dotSelected = document.querySelector(".dot_selected");
+
+    if (!dotSelected) {
+        return;
+    }
+
+    let index = Array.from(point.children).indexOf(dotSelected);
+
+    dotSelected.classList.remove("dot_selected");
+
+    let nextIndex = (index + 1) % slides.length;
+    point.children[nextIndex].classList.add("dot_selected");
+    updateBanner(nextIndex);
+});
+
+flechegauche.addEventListener("click", function() {
+    let dotSelected = document.querySelector(".dot_selected");
+
+    if (!dotSelected) {
+        return;
+    }
+
+    let index = Array.from(point.children).indexOf(dotSelected);
+
+    dotSelected.classList.remove("dot_selected");
+
+    let prevIndex = (index - 1 + slides.length) % slides.length;
+    point.children[prevIndex].classList.add("dot_selected");
+    updateBanner(prevIndex);
+});
+
+function updateBanner(index) {
+    imageCarrousel.src = "./assets/images/slideshow/" + slides[index].image;
+    texteCarrousel.innerHTML = slides[index].tagLine;
 }
